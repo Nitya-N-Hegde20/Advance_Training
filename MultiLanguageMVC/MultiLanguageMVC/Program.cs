@@ -1,0 +1,53 @@
+using System.Globalization;
+
+namespace MultiLanguageMVC
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+
+            // Add services to the container.
+            builder.Services.AddControllersWithViews();
+
+            var app = builder.Build();
+
+            // Configure the HTTP request pipeline.
+            if (!app.Environment.IsDevelopment())
+            {
+                app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseRouting();
+            app.Use(async (context, next) =>
+            {
+                string cookie = string.Empty;
+                if (context.Request.Cookies.TryGetValue("Language", out cookie))
+                {
+                    Thread.CurrentThread.CurrentCulture =new CultureInfo(cookie);
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo(cookie);
+                }
+                else
+                {
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
+
+                }
+                await next.Invoke();
+            });
+            app.UseAuthorization();
+
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.Run();
+        }
+    }
+}

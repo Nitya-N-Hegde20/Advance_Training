@@ -1,0 +1,21 @@
+
+<table class="table table-success m-5 p-5">
+  <thead class="table-dark table-bordered">
+    <tr>
+      <th >USN</th>
+      <th >Name</th>
+      <th >Branch</th>
+      <th>Sem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stu of st" >
+      <th>{{stu.RollNumber}}</th>
+      <td>{{stu.Name}}</td>
+      <td>{{stu.Branch}}</td>
+      <td>{{stu.Branch}}</td>
+    </tr>
+    
+  </tbody>
+</table>
+

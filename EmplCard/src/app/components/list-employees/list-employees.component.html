@@ -1,0 +1,20 @@
+<div class="container m-5"><div class="row"><div *ngFor="let employee of employees" class="col-md-3">
+  
+
+    
+      
+    <div class="card" style="width: 18rem;">
+      
+    <img src="{{employee.photoPath}}" class="card-img-top" alt="{{ employee.name }}">
+  
+      <p class="card-text"><h2>{{ employee.name }}</h2>
+    
+        <p>Gender: {{ employee.gender }}</p>
+      
+        <p>Email: {{ employee.email }}</p>
+      
+        <p>Phone: {{ employee.phoneNumber }}</p>
+    </div>
+  </div>
+  </div>
+  </div>
